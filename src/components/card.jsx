@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import Tilt from 'react-parallax-tilt';
 
-export default function Card ({characterName, characterImage, handleClick, cardsShowing}) {
-
-    const ANIMATION_TIME = 850;
-    const [interactable, setInteractable] = useState(false);
-  
-    useEffect(() => {
-      setTimeout(() => setInteractable(true), ANIMATION_TIME);
-    }, []);
+export default function Card ({characterName, characterImage, handleClick, cardsShowing, id}) {
 
     return (
 
@@ -18,9 +11,7 @@ export default function Card ({characterName, characterImage, handleClick, cards
                     glareColor="#ffffff"
                     glarePosition="bottom"
                     glareBorderRadius="20px"
-                    className={`card-container ${cardsShowing ? "front" : "back"} ${
-                        cardsShowing && interactable ? undefined : "pointer-events-none"
-                      }`}>
+                    className={`card-container ${cardsShowing ? "front" : "back"}`}>
                         <div className="card-inner">
                             <div className='card-face'>
                                 <div className='card-image' onClick={handleClick}

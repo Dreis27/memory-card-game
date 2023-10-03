@@ -1,9 +1,12 @@
 import Card from './card';
 import { useEffect, useState } from 'react';
 
-export default function Game ({handleClick, score, highScore}) {
+export default function Game () {
 
     const [cardsArray, setCardsArray] = useState([]);
+    const [score, setScore] = useState('0');
+    const [highScore, setHighScore] = useState('0');
+    const [cardsShowing, setCardsShowing] = useState(true);
 
     useEffect(() => {
       const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
@@ -17,11 +20,14 @@ export default function Game ({handleClick, score, highScore}) {
             return {
               name: data.name,
               image: data.sprites.other['official-artwork'].front_default,
+              beenClicked: false,
+              id: data.name
             };
           })
         );
-  
-        setCardsArray(pokemonCardList);
+        const shuffledArray = shuffleArray(pokemonToFetch);
+
+        setCardsArray(shuffledArray);
       };
   
       fetchDataForPokemon();
@@ -37,6 +43,31 @@ export default function Game ({handleClick, score, highScore}) {
         return shuffledArray;
     }
 
+    const handleClick = (cardId) => {
+      const clickedCard = cardsArray.find((card) => card.id === cardId);
+
+      if(!clickedCard.beenClicked) {
+        const updateCardsArray = cardsArray.map((card)=>
+        card.id === cardId ? {...card, beenClicked: true} : card)
+
+        setCardsArray(updateCardsArray);
+
+        const shuffledArray = shuffleArray(updateCardsArray);
+        setCardsArray(shuffledArray);
+
+
+        setCardsShowing(false);
+
+        setTimeout(() => {
+          setCardsShowing(true);
+        }, 1000);
+      } else {
+        alert('You clicked the same card twice. You lose!');
+
+        initializeGame();
+      }
+    }
+
     return (
         <div className="game">
             <div className='score-container'>
@@ -49,8 +80,9 @@ export default function Game ({handleClick, score, highScore}) {
                         characterName={card.name}
                         characterImage={card.image}
                         handleClick={handleClick}
-                        cardsShowing={true}
+                        cardsShowing={cardsShowing}
                         key={card.name}
+                        id={card.name}
                     />
                 ))}
             </div>
