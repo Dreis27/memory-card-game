@@ -8,14 +8,15 @@ export default function Game () {
     const [highScore, setHighScore] = useState('0');
     const [cardsShowing, setCardsShowing] = useState(true);
 
+    const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
+
     useEffect(() => {
-      const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
   
       // Fetch data for each Pokémon and construct card objects
       const fetchDataForPokemon = async () => {
         const pokemonCardList = await Promise.all(
-          pokemonToFetch.map(async (pokemonNameOrId) => {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+          pokemonToFetch.map(async (pokemonName) => {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
             const data = await response.json();
             return {
               name: data.name,
@@ -52,19 +53,19 @@ export default function Game () {
 
         setCardsArray(updateCardsArray);
 
+        setCardsShowing(false);
+
         const shuffledArray = shuffleArray(updateCardsArray);
         setCardsArray(shuffledArray);
 
-
-        setCardsShowing(false);
+        setScore(score+1);
 
         setTimeout(() => {
           setCardsShowing(true);
         }, 1000);
       } else {
+        setHighScore(score);
         alert('You clicked the same card twice. You lose!');
-
-        initializeGame();
       }
     }
 
