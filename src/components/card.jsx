@@ -21,7 +21,7 @@ export default function Card ({character, handleClick, cardsShowing}) {
                     className={`card-container ${cardsShowing ? "front" : "back"} ${
                         cardsShowing && interactable ? undefined : "pointer-events-none"
                       }`}>
-                        <div className="card-container">
+                        
                             <div className='card-face'>
                                 <div className='card-image' onClick={handleClick}
                                     style={{backgroundImage: `url(${character.src})`}}>
@@ -29,7 +29,7 @@ export default function Card ({character, handleClick, cardsShowing}) {
                                 <div className='card-name'>{character.name}</div>
                             </div>
                             <div className='card-back'></div>
-                        </div>
+                        
                 </Tilt>
     ) 
 }
