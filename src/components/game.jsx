@@ -1,12 +1,11 @@
 import Card from './card';
 import { useEffect, useState } from 'react';
 
-export default function Game ({cardsArray, handleClick, score, highScore}) {
+export default function Game ({handleClick, score, highScore}) {
 
     const [cardsArray, setCardsArray] = useState([]);
 
     useEffect(() => {
-      // Define the names or IDs of the Pokémon you want to fetch
       const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
   
       // Fetch data for each Pokémon and construct card objects
@@ -17,17 +16,26 @@ export default function Game ({cardsArray, handleClick, score, highScore}) {
             const data = await response.json();
             return {
               name: data.name,
-              image: data.sprites.front_default,
+              image: data.sprites.other['official-artwork'].front_default,
             };
           })
         );
   
-        // Update state with the Pokémon card objects
         setCardsArray(pokemonCardList);
       };
   
       fetchDataForPokemon();
     }, []);
+
+
+    const shuffleArray = (array) => {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length -1; i>0; i--) {
+            const j = Math.floor(Math.random() * (i+1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    }
 
     return (
         <div className="game">
@@ -42,7 +50,7 @@ export default function Game ({cardsArray, handleClick, score, highScore}) {
                         characterImage={card.image}
                         handleClick={handleClick}
                         cardsShowing={true}
-                        key={card.id}
+                        key={card.name}
                     />
                 ))}
             </div>

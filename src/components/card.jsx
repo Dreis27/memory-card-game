@@ -21,7 +21,7 @@ export default function Card ({characterName, characterImage, handleClick, cards
                     className={`card-container ${cardsShowing ? "front" : "back"} ${
                         cardsShowing && interactable ? undefined : "pointer-events-none"
                       }`}>
-                        <div className="the-card">
+                        <div className="card-inner">
                             <div className='card-face'>
                                 <div className='card-image' onClick={handleClick}
                                     style={{backgroundImage: `url(${characterImage})`}}>
