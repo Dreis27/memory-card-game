@@ -18,10 +18,21 @@ export default function Card ({characterName, characterImage, handleClick, id}) 
                     glareColor="#ffffff"
                     glarePosition="bottom"
                     glareBorderRadius="20px"
-                    className={`card-container ${flipped ? "front" : "back"}`}>
+                    className={`card-container ${flipped ? "flipped" : ""}`}
+                    >
                         <div className="card-inner">
-                            <div className='card-face' onClick={() => {handleClick();
-                            setFlipped(true);}}>
+                            <div className='card-face' 
+                            onClick={() => {
+                                if (!flipped) {
+                                  handleClick();
+                                  setFlipped(true);
+                        
+                                  setTimeout(() => {
+                                    setFlipped(false);
+                                  }, 1000);
+                                }
+                              }}
+                            >
                                 <div className='card-image'
                                     style={{backgroundImage: `url(${characterImage})`}}>
                                 </div>

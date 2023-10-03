@@ -7,6 +7,7 @@ export default function Game () {
     const [cardsArray, setCardsArray] = useState([]);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+
   
 
     const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
@@ -24,7 +25,7 @@ export default function Game () {
               name: data.name,
               image: data.sprites.other['official-artwork'].front_default,
               beenClicked: false,
-              id: data.name
+              id: uniqid()
             };
           })
         );
@@ -49,6 +50,7 @@ export default function Game () {
 
     const handleClick = (cardId) => {
       const clickedCard = cardsArray.find((card) => card.id === cardId);
+      console.log(cardId);
   
       if (!clickedCard.beenClicked) {
         const updateCardsArray = cardsArray.map((card) =>
@@ -56,6 +58,7 @@ export default function Game () {
         );
   
         setCardsArray(updateCardsArray);
+
         setScore(score + 1);
   
         setTimeout(() => {
@@ -69,7 +72,7 @@ export default function Game () {
         alert('You clicked the same card twice. You lose!');
       }
     };
-      console.log(cardsArray);
+
     return (
         <div className="game">
             <div className='score-container'>
@@ -81,9 +84,9 @@ export default function Game () {
                     <Card 
                         characterName={card.name}
                         characterImage={card.image}
-                        handleClick={() => handleClick(card.name)} 
-                        key = {uniqid()}
-                        id={card.name}
+                        handleClick={() => handleClick(card.id)} 
+                        key = {card.id}
+                        id={card.id}
                     />
                 ))}
             </div>
