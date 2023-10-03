@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import Tilt from 'react-parallax-tilt';
 import '../styles/card.css'
 
-export default function Card ({characterName, characterImage, handleClick, cardsShowing, id}) {
+export default function Card ({characterName, characterImage, handleClick, id}) {
+
+    const [flipped, setFlipped] = useState(false);
+
+    useEffect(() => {
+      setFlipped(false);
+    }, [id]);
 
     return (
 
@@ -12,10 +18,11 @@ export default function Card ({characterName, characterImage, handleClick, cards
                     glareColor="#ffffff"
                     glarePosition="bottom"
                     glareBorderRadius="20px"
-                    className={`card-container ${cardsShowing ? "front" : "back"}`}>
+                    className={`card-container ${flipped ? "front" : "back"}`}>
                         <div className="card-inner">
-                            <div className='card-face'>
-                                <div className='card-image' onClick={handleClick}
+                            <div className='card-face' onClick={() => {handleClick();
+                            setFlipped(true);}}>
+                                <div className='card-image'
                                     style={{backgroundImage: `url(${characterImage})`}}>
                                 </div>
                                 <div className='card-name'>{characterName}</div>

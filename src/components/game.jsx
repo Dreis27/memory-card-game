@@ -1,12 +1,13 @@
 import Card from './card';
 import { useEffect, useState } from 'react';
+import uniqid from 'uniqid';
 
 export default function Game () {
 
     const [cardsArray, setCardsArray] = useState([]);
-    const [score, setScore] = useState('0');
-    const [highScore, setHighScore] = useState('0');
-    const [cardsShowing, setCardsShowing] = useState(true);
+    const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(0);
+  
 
     const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
 
@@ -18,6 +19,7 @@ export default function Game () {
           pokemonToFetch.map(async (pokemonName) => {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
             const data = await response.json();
+
             return {
               name: data.name,
               image: data.sprites.other['official-artwork'].front_default,
@@ -26,7 +28,8 @@ export default function Game () {
             };
           })
         );
-        const shuffledArray = shuffleArray(pokemonToFetch);
+
+        const shuffledArray = shuffleArray(pokemonCardList);
 
         setCardsArray(shuffledArray);
       };
@@ -46,29 +49,27 @@ export default function Game () {
 
     const handleClick = (cardId) => {
       const clickedCard = cardsArray.find((card) => card.id === cardId);
-
-      if(!clickedCard.beenClicked) {
-        const updateCardsArray = cardsArray.map((card)=>
-        card.id === cardId ? {...card, beenClicked: true} : card)
-
+  
+      if (!clickedCard.beenClicked) {
+        const updateCardsArray = cardsArray.map((card) =>
+          card.id === cardId ? { ...card, beenClicked: true } : card
+        );
+  
         setCardsArray(updateCardsArray);
-
-        setCardsShowing(false);
-
-        const shuffledArray = shuffleArray(updateCardsArray);
-        setCardsArray(shuffledArray);
-
-        setScore(score+1);
-
+        setScore(score + 1);
+  
         setTimeout(() => {
-          setCardsShowing(true);
+          setCardsArray(shuffleArray(updateCardsArray));
         }, 1000);
       } else {
-        setHighScore(score);
+        if (score > highScore) {
+          setHighScore(score);
+        }
+        setScore(0);
         alert('You clicked the same card twice. You lose!');
       }
-    }
-
+    };
+      console.log(cardsArray);
     return (
         <div className="game">
             <div className='score-container'>
@@ -80,9 +81,8 @@ export default function Game () {
                     <Card 
                         characterName={card.name}
                         characterImage={card.image}
-                        handleClick={handleClick}
-                        cardsShowing={cardsShowing}
-                        key={card.name}
+                        handleClick={() => handleClick(card.name)} 
+                        key = {uniqid()}
                         id={card.name}
                     />
                 ))}
