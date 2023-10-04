@@ -63,19 +63,16 @@ export default function Game () {
         setCardsArray(updateCardsArray);
 
         setScore(score + 1);
+        setFlipped(true); 
+        
+        setTimeout(() => {
+          setCardsArray(shuffleArray(updateCardsArray));
+        }, 500);
 
-        if (!flipped) {
-          setTimeout(() => {
-            setFlipped(true);
-          }, 100);
+        setTimeout(() => {
+          setFlipped(false); 
+        }, 1300);
 
-
-  
-          setTimeout(() => {
-            setCardsArray(shuffleArray(updateCardsArray));
-            setFlipped(false);
-          }, 1200);
-        }
         
       } else {
         if (score > highScore) {

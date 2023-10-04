@@ -1,6 +1,6 @@
 .cards-container {
     display: grid;
-    gap: 16px; /* Adjust the gap between cards as needed */
+    gap: 1px;
   }
   
   @media (min-width: 200px) {
