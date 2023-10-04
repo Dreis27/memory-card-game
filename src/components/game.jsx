@@ -50,10 +50,17 @@ export default function Game () {
         return shuffledArray;
     }
 
+    const resetCardsArray = () => {
+      const resetCardsArray = cardsArray.map((card) => ({
+        ...card,
+        beenClicked: false
+      }));
+      setCardsArray(resetCardsArray);
+    }
+
     const handleClick = (cardId) => {
 
       const clickedCard = cardsArray.find((card) => card.id === cardId);
-      console.log(cardId);
   
       if (!clickedCard.beenClicked) {
         const updateCardsArray = cardsArray.map((card) =>
@@ -73,6 +80,13 @@ export default function Game () {
           setFlipped(false); 
         }, 1300);
 
+        if(score+1 >= 10){
+          console.log('you win');
+          resetCardsArray();
+          setScore(0);
+          setHighScore(score+1);
+        }
+
         
       } else {
         if (score > highScore) {
@@ -80,6 +94,8 @@ export default function Game () {
         }
         setScore(0);
         alert('You clicked the same card twice. You lose!');
+
+        resetCardsArray();
       }
     };
 
