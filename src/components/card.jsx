@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import Tilt from 'react-parallax-tilt';
 import '../styles/card.css'
 
-export default function Card ({characterName, characterImage, handleClick, id}) {
-
-    const [flipped, setFlipped] = useState(false);
-
-    useEffect(() => {
-      setFlipped(false);
-    }, [id]);
+export default function Card ({characterName, characterImage, handleClick, id, flipped}) {
 
     return (
 
@@ -22,17 +16,8 @@ export default function Card ({characterName, characterImage, handleClick, id}) 
                     >
                         <div className="card-inner">
                             <div className='card-face' 
-                            onClick={() => {
-                                if (!flipped) {
-                                  handleClick();
-                                  setFlipped(true);
-                        
-                                  setTimeout(() => {
-                                    setFlipped(false);
-                                  }, 1000);
-                                }
-                              }}
-                            >
+                              onClick={handleClick}>
+                            
                                 <div className='card-image'
                                     style={{backgroundImage: `url(${characterImage})`}}>
                                 </div>
@@ -41,5 +26,7 @@ export default function Card ({characterName, characterImage, handleClick, id}) 
                             <div className='card-back'></div>
                         </div>
                 </Tilt>
+
+              
     ) 
 }

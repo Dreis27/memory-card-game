@@ -7,6 +7,7 @@ export default function Game () {
     const [cardsArray, setCardsArray] = useState([]);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [flipped, setFlipped] = useState(false);
 
   
 
@@ -49,6 +50,7 @@ export default function Game () {
     }
 
     const handleClick = (cardId) => {
+
       const clickedCard = cardsArray.find((card) => card.id === cardId);
       console.log(cardId);
   
@@ -60,10 +62,20 @@ export default function Game () {
         setCardsArray(updateCardsArray);
 
         setScore(score + 1);
+
+        if (!flipped) {
+          setTimeout(() => {
+            setFlipped(true);
+          }, 100);
+
+
   
-        setTimeout(() => {
-          setCardsArray(shuffleArray(updateCardsArray));
-        }, 1000);
+          setTimeout(() => {
+            setCardsArray(shuffleArray(updateCardsArray));
+            setFlipped(false);
+          }, 1200);
+        }
+        
       } else {
         if (score > highScore) {
           setHighScore(score);
@@ -87,6 +99,7 @@ export default function Game () {
                         handleClick={() => handleClick(card.id)} 
                         key = {card.id}
                         id={card.id}
+                        flipped={flipped}
                     />
                 ))}
             </div>
