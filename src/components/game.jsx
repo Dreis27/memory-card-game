@@ -1,6 +1,7 @@
 import Card from './card';
 import { useEffect, useState } from 'react';
 import uniqid from 'uniqid';
+import '../styles/game.css'
 
 export default function Game () {
 

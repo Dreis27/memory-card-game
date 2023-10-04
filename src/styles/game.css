@@ -1,0 +1,34 @@
+.cards-container {
+    display: grid;
+    gap: 16px; /* Adjust the gap between cards as needed */
+  }
+  
+  @media (min-width: 200px) {
+    /* 1 row of 10 cards on screens with a minimum width of 1000px */
+    .cards-container {
+      grid-template-columns: repeat(10, 1fr);
+    }
+  }
+  
+  @media (max-width: 1999px) and (min-width: 1400px) {
+    /* 2 rows of 5 cards on screens between 600px and 999px */
+    .cards-container {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  
+  @media (max-width: 1399px) and (min-width: 500px) {
+    /* 5 rows of 2 cards on screens between 400px and 599px */
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+    }
+  }
+  
+  @media (max-width: 499px) {
+    /* 10 rows of 1 card on screens with a maximum width of 399px */
+    .cards-container {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 1fr;
+    }
+  }
