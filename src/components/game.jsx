@@ -16,7 +16,6 @@ export default function Game () {
 
     useEffect(() => {
   
-      // Fetch data for each Pokémon and construct card objects
       const fetchDataForPokemon = async () => {
         const pokemonCardList = await Promise.all(
           pokemonToFetch.map(async (pokemonName) => {
@@ -40,6 +39,10 @@ export default function Game () {
       fetchDataForPokemon();
     }, []);
 
+    useEffect(() => {
+      console.log(cardsArray);
+    }, [cardsArray]);
+
 
     const shuffleArray = (array) => {
         const shuffledArray = [...array];
@@ -51,14 +54,15 @@ export default function Game () {
     }
 
     const resetCardsArray = () => {
-      const resetCardsArray = cardsArray.map((card) => ({
+      const resetBeenClickedCardsArray = cardsArray.map((card) => ({
         ...card,
         beenClicked: false
       }));
-      setCardsArray(resetCardsArray);
+      return resetBeenClickedCardsArray;
     }
 
     const handleClick = (cardId) => {
+      console.log('click',cardsArray);
 
       const clickedCard = cardsArray.find((card) => card.id === cardId);
   
@@ -80,9 +84,9 @@ export default function Game () {
           setFlipped(false); 
         }, 1300);
 
-        if(score+1 >= 10){
+        if(score+1 >= 3){
+          setCardsArray(resetCardsArray());
           console.log('you win');
-          resetCardsArray();
           setScore(0);
           setHighScore(score+1);
         }
@@ -95,7 +99,7 @@ export default function Game () {
         setScore(0);
         alert('You clicked the same card twice. You lose!');
 
-        resetCardsArray();
+        setCardsArray(resetCardsArray());
       }
     };
 

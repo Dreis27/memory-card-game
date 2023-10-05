@@ -1,12 +1,23 @@
 .cards-container {
-    display: grid;
-    gap: 1px;
-  }
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  gap: 10px; 
+  margin: auto;
+  padding: 20px;
+
   
-  @media (min-width: 200px) {
+  background-color: #f0f0f0;
+  border: 2px solid #ccc; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+  
+  @media (min-width: 2200px) {
     /* 1 row of 10 cards on screens with a minimum width of 1000px */
     .cards-container {
       grid-template-columns: repeat(10, 1fr);
+      width: 2100px;
     }
   }
   
@@ -14,6 +25,7 @@
     /* 2 rows of 5 cards on screens between 600px and 999px */
     .cards-container {
       grid-template-columns: repeat(5, 1fr);
+      width: 1100px;
     }
   }
   
@@ -22,6 +34,7 @@
     .cards-container {
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: 1fr;
+      width: 450px;
     }
   }
   
@@ -30,5 +43,6 @@
     .cards-container {
       grid-template-columns: 1fr;
       grid-auto-rows: 1fr;
+      width: 300px;
     }
   }
