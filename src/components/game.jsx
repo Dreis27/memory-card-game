@@ -10,8 +10,6 @@ export default function Game () {
     const [highScore, setHighScore] = useState(0);
     const [flipped, setFlipped] = useState(false);
 
-  
-
     const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
 
     useEffect(() => {
@@ -39,11 +37,6 @@ export default function Game () {
       fetchDataForPokemon();
     }, []);
 
-    useEffect(() => {
-      console.log(cardsArray);
-    }, [cardsArray]);
-
-
     const shuffleArray = (array) => {
         const shuffledArray = [...array];
         for (let i = shuffledArray.length -1; i>0; i--) {
@@ -62,7 +55,6 @@ export default function Game () {
     }
 
     const handleClick = (cardId) => {
-      console.log('click',cardsArray);
 
       const clickedCard = cardsArray.find((card) => card.id === cardId);
   
@@ -85,10 +77,14 @@ export default function Game () {
         }, 1300);
 
         if(score+1 >= 3){
-          setCardsArray(resetCardsArray());
+          setTimeout(() => {
+            const resetCards = resetCardsArray();
+            setCardsArray(resetCards);
+          }, 600);
           console.log('you win');
           setScore(0);
           setHighScore(score+1);
+         
         }
 
         
