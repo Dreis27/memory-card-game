@@ -76,7 +76,7 @@ export default function Game () {
           setFlipped(false); 
         }, 1300);
 
-        if(score+1 >= 3){
+        if(score+1 >= 10){
           setTimeout(() => {
             const resetCards = resetCardsArray();
             setCardsArray(resetCards);

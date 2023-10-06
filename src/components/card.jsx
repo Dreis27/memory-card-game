@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Tilt from 'react-parallax-tilt';
 import '../styles/card.css'
 
