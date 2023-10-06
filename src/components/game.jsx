@@ -1,4 +1,5 @@
 import Card from './card';
+import Modal from './modal';
 import { useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import '../styles/game.css'
@@ -9,6 +10,8 @@ export default function Game () {
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [flipped, setFlipped] = useState(false);
+    const [status, setStatus] = useState('');
+    const [show, setShow] = useState(false);
 
     const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
 
@@ -81,7 +84,8 @@ export default function Game () {
             const resetCards = resetCardsArray();
             setCardsArray(resetCards);
           }, 600);
-          console.log('you win');
+          setStatus('won');
+          setShow(true);
           setScore(0);
           setHighScore(score+1);
          
@@ -93,13 +97,19 @@ export default function Game () {
           setHighScore(score);
         }
         setScore(0);
-        alert('You clicked the same card twice. You lose!');
+        setStatus('lost');
+        setShow(true);
 
         setCardsArray(resetCardsArray());
       }
     };
 
+    const onModalClose = () => {
+      setShow(false);
+    }
+
     return (
+      <>
         <div className="game">
             <div className='score-container'>
                 <div className='score'>CURRENT SCORE: {score}</div>
@@ -118,5 +128,11 @@ export default function Game () {
                 ))}
             </div>
         </div>
+        <Modal
+            show={show}
+            onClose={onModalClose}
+            status={status}
+        />
+      </>
     )
 }

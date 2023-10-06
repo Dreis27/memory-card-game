@@ -1,4 +1,6 @@
-
+import '../styles/modal.css'
+import wonImage from '../assets/pokemon_won.jpg';
+import lostImage from '../assets/pokemon_lost.jpg';
 
 export default function Modal({show, onClose, status}){
     if (!show) {
@@ -6,7 +8,7 @@ export default function Modal({show, onClose, status}){
     }
   
     const modalStyles = {
-        backgroundImage: status === 'won' ? 'url(/path/to/win-image.jpg)' : 'url(/path/to/lose-image.jpg)',
+        backgroundImage: status === 'won' ? `url(${wonImage})` : `url(${lostImage})`,
         borderColor: status === 'won' ? 'green' : 'red'
       };
 
@@ -16,7 +18,7 @@ export default function Modal({show, onClose, status}){
         <div className="modal-content" style={modalStyles}>
           <h2>{status === 'won' ? 'Congratulations!' : 'Game Over'}</h2>
           <p>{status === 'won' ? 'You won the game!' : 'You lost the game.'}</p>
-          <button onClick={onClose}>Close</button>
+          <button onClick={onClose}>Play Again</button>
         </div>
       </div>
     );
