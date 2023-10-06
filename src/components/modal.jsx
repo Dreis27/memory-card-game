@@ -18,7 +18,7 @@ export default function Modal({show, onClose, status}){
         <div className="modal-content" style={modalStyles}>
           <h2>{status === 'won' ? 'Congratulations!' : 'Game Over'}</h2>
           <p>{status === 'won' ? 'You won the game!' : 'You lost the game.'}</p>
-          <button onClick={onClose}>Play Again</button>
+          <button className='modal-button' onClick={onClose}>Play Again</button>
         </div>
       </div>
     );
