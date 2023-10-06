@@ -11,6 +11,10 @@ export default function Modal({show, onClose, status}){
         backgroundImage: status === 'won' ? `url(${wonImage})` : `url(${lostImage})`,
         borderColor: status === 'won' ? 'green' : 'red'
       };
+    
+    const buttonStyles = {
+        backgroundColor: status === 'won' ? 'rgb(0, 187, 78)' : 'rgb(180, 26, 26)'
+    }
 
 
     return (
@@ -18,7 +22,11 @@ export default function Modal({show, onClose, status}){
         <div className="modal-content" style={modalStyles}>
           <h2>{status === 'won' ? 'Congratulations!' : 'Game Over'}</h2>
           <p>{status === 'won' ? 'You won the game!' : 'You lost the game.'}</p>
-          <button className='modal-button' onClick={onClose}>Play Again</button>
+          <button className='modal-button' 
+            onClick={onClose} 
+            style={buttonStyles}
+          >Play Again
+          </button>
         </div>
       </div>
     );

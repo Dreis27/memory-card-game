@@ -28,11 +28,11 @@
   .modal-button {
     padding: 10px 20px;
     background-color: #333;
-    color: white;
-    border: none;
+    color: rgb(255, 255, 255);
+    border: 2px solid transparent;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: border-color 0.3s ease;
     margin-top: 20%;
 
   }
@@ -44,10 +44,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
-    z-index: -1; /* Place it behind the text content */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1; 
   }
   
   .modal-button:hover {
-    background-color: #555;
+    border-color: rgb(255, 255, 255);
   }
