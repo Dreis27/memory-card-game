@@ -1,3 +1,9 @@
+
+
+:root {
+  background-image: url('../assets/snorlax.jpg');
+}
+
 .cards-container {
   display: grid;
   gap: 20px 20px;
@@ -46,11 +52,13 @@
   }
 
   .score-container {
-    background-color: #b7eb57;
+    font-size: 20px;
+    background-color: #daf5a7;
     box-sizing: border-box;
     padding: 10px 25px;
-    width: 200px;
+    width: 240px;
     border-radius: 10px;
     margin: 30px auto;
     text-align: right;
+    border-top: 3px solid rgb(68, 68, 68);
   }
