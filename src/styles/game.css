@@ -1,11 +1,9 @@
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
-  gap: 10px; 
-  margin: auto;
+  gap: 20px 20px;
+  margin: 60px auto;
   padding: 20px;
 
-  
   background-color: #f0f0f0;
   border: 2px solid #ccc; 
   border-radius: 10px; 
@@ -45,4 +43,14 @@
       grid-auto-rows: 1fr;
       width: 300px;
     }
+  }
+
+  .score-container {
+    background-color: #b7eb57;
+    box-sizing: border-box;
+    padding: 10px 25px;
+    width: 200px;
+    border-radius: 10px;
+    margin: 30px auto;
+    text-align: right;
   }
