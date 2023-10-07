@@ -1,4 +1,5 @@
 .card-container {
+
     width: 200px;
     height: 300px;
     perspective: 1000px;
@@ -14,6 +15,7 @@
   
   .card-face,
   .card-back {
+    border-radius: 21px;
     width: 100%;
     height: 100%;
     position: absolute;
