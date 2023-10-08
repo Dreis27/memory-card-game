@@ -1,5 +1,7 @@
 import Tilt from 'react-parallax-tilt';
 import '../styles/card.css'
+import pokeball from '../assets/pokeball.png';
+
 
 export default function Card ({characterName, characterImage, handleClick, id, flipped}) {
 
@@ -22,7 +24,9 @@ export default function Card ({characterName, characterImage, handleClick, id, f
                                 </div>
                                 <div className='card-name'>{characterName}</div>
                             </div>
-                            <div className='card-back'></div>
+                            <div className='card-back'>
+                                <img src={pokeball} alt="pokeball" />
+                            </div>
                         </div>
                 </Tilt>
 

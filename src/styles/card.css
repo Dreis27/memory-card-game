@@ -25,14 +25,22 @@
     align-items: center;
     justify-content: center;
     border: 1px solid black;
+    background-color: #f0f0f0;
   }
   
   .card-back {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     transform: rotateY(180deg);
-    background-color: #f0f0f0;
     color: #333;
     font-size: 18px;
     border: 1px solid #ccc;
+  }
+
+  .card-back > img {
+    width: 50%;
+    height: auto;
   }
   
   .card-container.flipped .card-inner {
