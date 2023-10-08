@@ -19,9 +19,7 @@ export default function Card ({characterName, characterImage, handleClick, id, f
                             <div className='card-face' 
                               onClick={handleClick}>
                             
-                                <div className='card-image'
-                                    style={{backgroundImage: `url(${characterImage})`}}>
-                                </div>
+                                <img src={characterImage} alt={characterName} />
                                 <div className='card-name'>{characterName}</div>
                             </div>
                             <div className='card-back'>
