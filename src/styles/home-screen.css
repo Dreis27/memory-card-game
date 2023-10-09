@@ -1,11 +1,24 @@
 .game-info-container {
+    margin: 60px auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
+    width: 50%;
+    color: white;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .game-info-container > img {
-    width: 300px;
+    width: 500px;
     height: auto;
+    transition: transform 0.25s ease-in-out;
+}
+
+.game-info-container > img:hover {
+    transform: scale(1.1) rotate(5deg); 
 }
