@@ -3,6 +3,7 @@ import Modal from './modal';
 import { useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import '../styles/game.css'
+import HomeScreen from './home-screen'
 
 export default function Game () {
 
@@ -12,6 +13,7 @@ export default function Game () {
     const [flipped, setFlipped] = useState(false);
     const [status, setStatus] = useState('');
     const [show, setShow] = useState(false);
+    const [page, setPage] = useState('home');
 
     const pokemonToFetch = ['pikachu', 'charizard', 'bulbasaur', 'squirtle', 'snorlax', 'gengar', 'mewtwo', 'jigglypuff', 'eevee', 'machop'];
 
@@ -110,7 +112,7 @@ export default function Game () {
 
     return (
       <>
-        <div className="game">
+        {(page!=='home') ? (<div className="game">
             <div className='score-container'>
                 <div className='score'>CURRENT SCORE: {score}</div>
                 <div className='high-score'>HIGH SCORE: {highScore}</div>
@@ -127,7 +129,7 @@ export default function Game () {
                     />
                 ))}
             </div>
-        </div>
+        </div>) : (<HomeScreen/>)}
         <Modal
             show={show}
             onClose={onModalClose}

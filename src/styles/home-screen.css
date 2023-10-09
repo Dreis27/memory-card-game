@@ -1,0 +1,11 @@
+.game-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+.game-info-container > img {
+    width: 300px;
+    height: auto;
+}
