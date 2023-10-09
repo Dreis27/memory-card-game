@@ -18,7 +18,6 @@ export default function Card ({characterName, characterImage, handleClick, id, f
                         <div className="card-inner">
                             <div className='card-face' 
                               onClick={handleClick}>
-                            
                                 <img src={characterImage} alt={characterName} />
                                 <div className='card-name'>{characterName}</div>
                             </div>
