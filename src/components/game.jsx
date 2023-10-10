@@ -59,6 +59,10 @@ export default function Game () {
       return resetBeenClickedCardsArray;
     }
 
+    const start = () => {
+      setPage('game');
+    }
+
     const handleClick = (cardId) => {
 
       const clickedCard = cardsArray.find((card) => card.id === cardId);
@@ -129,7 +133,7 @@ export default function Game () {
                     />
                 ))}
             </div>
-        </div>) : (<HomeScreen/>)}
+        </div>) : (<HomeScreen handleStart={start}/>)}
         <Modal
             show={show}
             onClose={onModalClose}
