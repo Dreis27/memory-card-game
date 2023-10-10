@@ -62,6 +62,11 @@ export default function Game () {
     const start = () => {
       setPage('game');
     }
+    const home = () => {
+      onModalClose();
+      setPage('home');
+    }
+
 
     const handleClick = (cardId) => {
 
@@ -138,6 +143,7 @@ export default function Game () {
             show={show}
             onClose={onModalClose}
             status={status}
+            onReturnToMenue={home}
         />
       </>
     )
