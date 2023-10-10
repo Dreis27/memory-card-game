@@ -8,7 +8,7 @@ export default function HomeScreen({ handleStart }) {
             <img src={pokemonLogo} alt="pokemon logo" />
             <h1>Memory Game</h1>
             <p className="game-instruction">Dont&apos;t click the same card twice!</p>
-            <button onClick={handleStart}>START</button>
+            <button onClick={handleStart}>Start</button>
         </div>
     )
 }
